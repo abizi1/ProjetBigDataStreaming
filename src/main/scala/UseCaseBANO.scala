@@ -36,7 +36,8 @@ object UseCaseBANO {
       .option("delimiter", ",")
       .option("header", true)
       .schema(schema_bano)
-      .csv("C:\\Users\\offre de service\\Desktop\\Projet_BANO\\full.csv")
+      .csv("C:\\Users\\offre de service\\Desktop\\Projet_BANO\\fichier csv\\full.csv")
+   // df_bano_brute.show(3)
 
 //Creation des colonnes "code_departement" et "libelle_source"
 
@@ -71,12 +72,12 @@ object UseCaseBANO {
           .coalesce(1)
           .write
           .format("com.databricks.spark.csv")
-          .option("delimiter", ";")
-          .option("header", "true")
+          .option("delimiter",";")
+          .option("header","true")
           .mode(SaveMode.Overwrite)
-          .csv("C:\\Users\\offre de service\\Desktop\\source\\bano"+ x.toString)
+          .csv("C:\\Users\\offre de service\\Desktop\\source\\bano" + x.toString)
 
-       val chemin_source = new Path("C:\\Users\\offre de service\\Desktop\\source\\bano"+ x.toString)
+       val chemin_source = new Path("C:\\Users\\offre de service\\Desktop\\source\\bano" + x.toString)
        fs.copyFromLocalFile(chemin_source, chemin_dest)
     }
 
