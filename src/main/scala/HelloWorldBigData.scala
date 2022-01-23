@@ -27,6 +27,8 @@ object HelloWorldBigData extends App {
      *            Si Env = True, alors l'appli est déployée en local, sinon, elle est déployée sur un cluster
      */
     def Session_Spark (env :Boolean = true) : SparkSession = {
+
+
       try {
         if (env == true) {
           System.setProperty("hadoop.home.dir", "C:/Hadoop/")
@@ -35,8 +37,8 @@ object HelloWorldBigData extends App {
             .config("spark.sql.crossJoin.enabled", "true")
             //    .enableHiveSupport()
             .getOrCreate()
-        }else {
-          ss  = SparkSession.builder
+        } else {
+          ss = SparkSession.builder
             .appName("Mon application Spark")
             .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
             .config("spark.sql.crossJoin.enabled", "true")
@@ -44,11 +46,17 @@ object HelloWorldBigData extends App {
             .getOrCreate()
         }
       } catch {
-        case ex : FileNotFoundException => trace_log.error("Nous n'avons pas trouvé le winutils dans le chemin indiqué " + ex.printStackTrace())
-        case ex : Exception  => trace_log.error("Erreur dans l'initialisation de la session Spark " + ex.printStackTrace())
+        case ex: FileNotFoundException => trace_log.error("Nous n'avons pas trouvé le winutils dans le chemin indiqué " + ex.printStackTrace())
+        case ex: Exception => trace_log.error("Erreur dans l'initialisation de la session Spark " + ex.printStackTrace())
       }
 
       return ss
-
     }
+    def division(numerateur:Double, denominateur:Double):Double={
+      return numerateur/denominateur
+
+
+  }
+
+
 }
