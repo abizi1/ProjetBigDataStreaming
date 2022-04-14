@@ -55,7 +55,9 @@ object HelloWorldBigData extends App {
     def division(numerateur:Double, denominateur:Double):Double={
       return numerateur/denominateur
 
+      val liste = List[Int](1,2,3,4)
 
+    
   }
 
 
